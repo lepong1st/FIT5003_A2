@@ -1,5 +1,6 @@
 .PHONY: build-app build-fixed build-all run-app run-fixed run-all build-run build run up down
 
+# Build each individually or both
 build-app:
 	docker build -t devbank ../app
 
@@ -8,6 +9,7 @@ build-fixed:
 
 build-all: build-app build-fixed
 
+# Run each individually or both
 run-app:
 	docker run --rm -d -p 127.0.0.1:5000:5000 -e STUDENT_ID=30634784 --name devbank devbank
 
@@ -16,6 +18,7 @@ run-fixed:
 
 run-all: run-app run-fixed
 
+# Build + run shortcuts
 build-run: build-all run-all
 
 build: build-all
@@ -25,6 +28,7 @@ run: run-all
 stop:
 	docker stop devbank devbank-fixed
 
+# Preference aliases
 up: build-run
 
 down: stop
