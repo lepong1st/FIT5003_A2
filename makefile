@@ -13,8 +13,10 @@ build-all: build-app build-fixed
 run-app:
 	docker run --rm -d -p 127.0.0.1:5000:5000 -e STUDENT_ID=30634784 --name devbank devbank
 
+# Note: the ports were changed in app.py whilst testing. They have been changed back for the submission
+# so this will no longer work
 run-fixed:
-	docker run --rm -d -p 127.0.0.1:4000:5000 -e STUDENT_ID=30634784 --name devbank-fixed devbank-fixed
+	docker run --rm -d -p 127.0.0.1:4000:4000 -e STUDENT_ID=30634784 --name devbank-fixed devbank-fixed
 
 run-all: run-app run-fixed
 
@@ -28,7 +30,7 @@ run: run-all
 stop:
 	docker stop devbank devbank-fixed
 
-# Preference aliases
+# Prefered aliases
 up: build-run
 
 down: stop
